@@ -20,9 +20,10 @@ class ViewController: UIViewController {
         let rootNode = scene.rootNode
         
         // Box
-        let boxGeometry = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
+        let boxGeometry = SCNBox(width: 2, height: 2, length: 2, chamferRadius: 0)
         let boxMaterial = SCNMaterial()
         boxMaterial.diffuse.contents = UIColor.redColor()
+        boxMaterial.doubleSided = true
         boxGeometry.firstMaterial = boxMaterial
         let boxNode = SCNNode(geometry: boxGeometry)
         boxNode.position = SCNVector3(
@@ -42,7 +43,9 @@ class ViewController: UIViewController {
         cameraNode.camera = camera
         rootNode.addChildNode(cameraNode)
         
-        sceneView.scene = scene;
+        sceneView.scene = scene
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = true
     }
 
 }
